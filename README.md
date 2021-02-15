@@ -41,6 +41,7 @@ He already initialized a TypeScript + React project using Create React App. You 
 The manager asks you to:
 
 - Keep *TypeScript* and *React* because it sounds cool
+- Do not hesitate to add comments and explanations if necessary
 - Put the code on a Git repository (Github, Bitbucket etc) or a zip file
 - Send the link or the zip to the Hivency tech team for review!
 
