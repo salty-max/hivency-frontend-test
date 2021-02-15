@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+# Hivency Frontend Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Hivency Frontend test!
 
-## Available Scripts
+This test is designed to evaluate your web development skills, and is in two parts:
 
-In the project directory, you can run:
+- first part: a coding exercise to do at home
+- second part: a 1h live coding session, where you will add more features to your exercise
 
-### `yarn start`
+## Part 1: Home coding exercise
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Mission
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You just joined a small sport organization as a web developer.
 
-### `yarn test`
+This is your first day, and it appears that you are alone in the IT office,
+when suddenly someone knocks on the door.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The team manager enters and asks you if you can develop a responsive web application to:
 
-### `yarn build`
+- View a list of teams
+- View a team (ie. list of players)
+- View a player
+- Create or edit a player
+- Add or remove a player in a team
+  
+### Details
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The manager says you have complete creative freedom to:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- decide what information to display: photos, names, dates, description, matches..
+- decide how to display things: list, table, grid, cards, thumbnails, colors, animations..
+- decide what tools and libraries to use, change the configuration
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+He says that to get data, you can use [The SportsDB API](https://www.thesportsdb.com/api.php), which is a sports data API (free for basic use). You can also use another API or build your own data if you prefer.
 
-### `yarn eject`
+He already initialized a TypeScript + React project using Create React App. You can refer to [this guide](https://facebook.github.io/create-react-app/docs/getting-started) if you want to know the commands to run the server.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Requirements
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The manager asks you to:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Keep *TypeScript* and *React* because it sounds cool
+- Put the code on a Git repository (Github, Bitbucket etc)
+- Send the link to the Hivency tech team for review!
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Part 2: Live coding exercise
 
-## Learn More
+During the live coding session your mission will be to implement some features, based on the state of your project at the time.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+you will be asked to participate in a video meeting and share your screen and editor.
+(note: you will be allowed to go on Google, MDN.. if you are blocked).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To ensure the best experience possible, we will ask you to share a read-only access to your
+test project using [Liveshare](https://code.visualstudio.com/learn/collaboration/live-share), so that we can look at the code without any video compression artifacts. You will thus need to have the [VSCode editor](https://code.visualstudio.com/download) installed.
+
