@@ -47,7 +47,7 @@ const MainPage: React.FC = () => {
                 )}
               </div>
               <div className="mt-4">
-                <Button bgColor="blue" textColor="white" text="View more" icon="eye"/>
+                <Button bgColor="blue" icon="search" text="See details" />
               </div>
             </div>
           </article>
