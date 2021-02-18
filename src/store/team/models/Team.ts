@@ -1,3 +1,4 @@
+import { Player } from '../../player/models/Player';
 export interface Team {
   id: number,
   name: string,
@@ -5,5 +6,6 @@ export interface Team {
   coach: string,
   captain: string,
   uniform: string,
-  logo: string
+  logo: string,
+  players: Player[]
 }

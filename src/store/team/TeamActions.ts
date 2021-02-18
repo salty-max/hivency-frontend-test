@@ -25,11 +25,12 @@ const invalidateTeams = (error: string): AppActions => ({
   error,
 });
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const boundRequestTeams = () => async (dispatch: Dispatch<AppActions>) => {
   dispatch(requestTeams());
 
   try {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/teams`);
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/teams?_embed=players`);
     const json = await res.json();
 
     return dispatch(receiveTeams(json));

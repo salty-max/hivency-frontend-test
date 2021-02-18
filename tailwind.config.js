@@ -10,10 +10,13 @@ module.exports = {
       '2xl': '1536px',
     },
     fontFamily: {
-      sans: ['Nunito', 'sans-serif'],
+      sans: ['Open Sans', 'sans-serif'],
       serif: ['Roboto Slab', 'serif'],
     },
     colors: {
+      primary: {
+        DEFAULT: '#1C3C98',
+      },
       green: {
         DEFAULT: '#55efc4',
         dark: '#00b894',
@@ -52,6 +55,12 @@ module.exports = {
         DEFAULT: '#b2bec3',
         dark: '#636e72',
         darkest: '#2d3436',
+      },
+      white: {
+        DEFAULT: '#ffffff',
+      },
+      black: {
+        DEFAULT: '#000000',
       },
     },
     spacing: {

@@ -1,9 +1,9 @@
 import React from 'react';
-import MainPage from './screens/MainPage';
+import TeamList from './screens/TeamList';
 
 const App: React.FC = () => {
   return (
-    <MainPage />
+    <TeamList />
   );
 };
 
