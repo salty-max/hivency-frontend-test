@@ -8,15 +8,21 @@ import { boundRequestTeams } from '../store/team/TeamActions';
 import { Team } from '../store/team/models/Team';
 import Button from '../components/Button';
 import Logo from '../assets/images/tsubasa-logo.png';
+import { useHistory } from 'react-router-dom';
 
 const MainPage: React.FC = () => {
-  const { teams } = useTypedSelector(state => state.teamReducer)
+  const { teams } = useTypedSelector(state => state.teamReducer);
   const dispatch: ThunkDispatch<RootState, unknown, AppActions> = useDispatch();
   const fetchTeams = () => dispatch(boundRequestTeams());
+  const history = useHistory();
 
   useEffect(() => { fetchTeams() }, []);
 
   const isTeamFull = (team: Team): boolean => team.players.length >= 11;
+
+  const handleClick = (id: string) => {
+    history.push(`/teams/${id}`)
+  }
 
   return (
     <main className='container mx-auto px-4'>
@@ -47,7 +53,7 @@ const MainPage: React.FC = () => {
                 )}
               </div>
               <div className="mt-4">
-                <Button bgColor="blue" icon="search" text="See details" />
+                <Button bgColor="blue" icon="search" text="See details" onClick={() => handleClick(team.id.toString())} />
               </div>
             </div>
           </article>
