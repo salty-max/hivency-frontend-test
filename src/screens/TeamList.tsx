@@ -30,7 +30,7 @@ const MainPage: React.FC = () => {
         <img className="mx-auto" src={Logo} />
         <h1 className="pt-4 text-4xl text-center text-primary uppercase">Teams manager</h1>
       </div>
-      <section className="py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+      <section className="py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
         {teams && teams.length > 0 && teams.map(team => (
           <article key={team.id} className="p-4 max-w-sm bg-white rounded-xl shadow-md flex items-center space-x-4">
             <div className="flex-shrink-0">

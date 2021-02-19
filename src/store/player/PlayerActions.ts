@@ -36,7 +36,7 @@ export const boundRequestPlayer = (playerId: string) => async (dispatch: Dispatc
   dispatch(requestPlayer());
 
   try {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/players?id=${playerId}`);
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/players?_expand=team&id=${playerId}`);
     const json = await res.json();
 
     return dispatch(receivePlayer(json[0]));

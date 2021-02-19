@@ -86,23 +86,25 @@ const TeamShow: React.FC = () => {
               <Button bgColor="green" rounded-full icon="user-plus" circle onClick={handleAddPlayerClick} />
             </div>
             <div className='grid grid-rows-1 gap-y-4'>
-              <div className='w-full flex justify-between'>
-                <span>Number</span>
-                <span>Name</span>
-                <span>Position</span>
-              </div>
               {sortedPlayers?.map(player => (
               <div
-                className="w-full bg-gray-darkest text-white hover:bg-purple transition-colors duration-300 shadow-md py-1 px-4 rounded flex justify-between cursor-pointer"
+                className="w-full bg-gray-darkest text-white hover:bg-purple transition-colors duration-300 shadow-md py-1 px-4 rounded flex justify-between items-center cursor-pointer"
                 key={player.id}
                 onClick={() => handlePlayerClick(player.id.toString())}
               >
-                  <span className="font-bold">{player.teamNumber}</span>
-                  <span className="font-serif">
-                    {player.jp_name}
-                    {isCaptain(player.jp_name) && <i className='ml-2 fas fa-crown text-yellow-dark'></i>}
-                  </span>
-                  <span>{player.position}</span>
+                  <span className="font-bold w-8">{player.teamNumber}</span>
+                  <div className="flex-1 flex justify-center items-center">
+                    {player.thumb ? (
+                      <img className="w-8 h-8 rounded-full mr-4" src={player.thumb} alt={player.jp_name}/>
+                    ) : (
+                      <i className='fas fa-user'></i>
+                    )}
+                    <span className="font-serif w-full">
+                      {player.jp_name}
+                      {isCaptain(player.jp_name) && <i className='ml-2 fas fa-crown text-yellow-dark'></i>}
+                    </span>
+                  </div>
+                  <span className="w-8 text-right">{player.position}</span>
                 </div>
               ))}
             </div>

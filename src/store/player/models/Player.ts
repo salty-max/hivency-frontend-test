@@ -1,3 +1,5 @@
+import { Team } from "../../team/models/Team";
+
 export interface Player {
   id: number,
   jp_name: string,
@@ -10,5 +12,6 @@ export interface Player {
   teamId: number,
   teamNumber: number,
   position: string,
-  thumb: string
+  thumb: string,
+  team?: Team
 }
