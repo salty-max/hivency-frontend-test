@@ -5,8 +5,8 @@ export const FETCH_PLAYER_SUCCESS = 'FETCH_PLAYER_SUCCESS';
 export const FETCH_PLAYER_FAILURE = 'FETCH_PLAYER_FAILURE';
 export const ADD_PLAYER_SUCCESS = 'ADD_PLAYER_SUCCESS';
 export const ADD_PLAYER_FAILURE = 'ADD_PLAYER_FAILURE';
-export const FETCH_TEAM_FAILURE = 'FETCH_TEAM_FAILURE';
-
+export const DELETE_PLAYER_SUCCESS = 'DELETE_PLAYER_SUCCESS';
+export const DELETE_PLAYER_FAILURE = 'DELETE_PLAYER_FAILURE';
 interface PlayerAsync {
   loading: boolean,
   player?: Player,
@@ -28,6 +28,12 @@ interface AddPlayerSuccess extends PlayerAsync {
 interface AddPlayerFailure extends PlayerAsync {
   type: typeof ADD_PLAYER_FAILURE
 }
+interface DeletePlayerSuccess extends PlayerAsync {
+  type: typeof DELETE_PLAYER_SUCCESS
+}
+interface DeletePlayerFailure extends PlayerAsync {
+  type: typeof DELETE_PLAYER_FAILURE
+}
 
 export type PlayerActionTypes = 
   | FetchPlayerRequest
@@ -35,3 +41,5 @@ export type PlayerActionTypes =
   | FetchPlayerFailure
   | AddPlayerSuccess
   | AddPlayerFailure
+  | DeletePlayerSuccess
+  | DeletePlayerFailure

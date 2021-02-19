@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 import { RootState, useTypedSelector } from '../store/rootStore';
 import { AppActions } from '../store/models/actions';
 import { boundRequestTeam } from '../store/team/TeamActions';
-import { addPlayerAsync } from '../store/player/PlayerActions';
+import { addPlayerAsync, deletePlayerAsync } from '../store/player/PlayerActions';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import Button from '../components/Button';
 import Modal from '../components/Modal';
@@ -50,6 +50,7 @@ const TeamShow: React.FC = () => {
   const dispatch: ThunkDispatch<RootState, unknown, AppActions> = useDispatch();
   const fetchTeam = () => dispatch(boundRequestTeam(id));
   const addPlayer = (body: unknown) => dispatch(addPlayerAsync(body));
+  const deletePlayer = (id: string) => dispatch(deletePlayerAsync(id));
   const [showModal, setShowModal] = useState(false);
   const [values, setValues] = useState<Values>(resetValues);
 
@@ -90,6 +91,11 @@ const TeamShow: React.FC = () => {
     fetchTeam();
     onModalClose();
     setValues(resetValues);
+  }
+
+  const handleDelete = (id: string): void => {
+    deletePlayer(id);
+    fetchTeam();
   }
 
   return (
@@ -155,38 +161,52 @@ const TeamShow: React.FC = () => {
               </div>
               <Button
                 bgColor="green"
-                rounded-full
                 icon="user-plus"
-                circle
+                text="Add player"
                 onClick={handleAddPlayerClick}
               />
             </div>
             <div className="grid grid-rows-1 gap-y-4">
               {sortedPlayers?.map((player) => (
-                <div
-                  className="w-full bg-gray-darkest text-white hover:bg-purple transition-colors duration-300 shadow-md py-1 px-4 rounded flex justify-between items-center cursor-pointer"
-                  key={player.id}
-                  onClick={() => handlePlayerClick(player.id)}
-                >
-                  <span className="font-bold w-8">{player.teamNumber}</span>
-                  <div className="flex-1 flex justify-center items-center">
-                    {player.thumb ? (
-                      <img
-                        className="w-8 h-8 rounded-full mr-4"
-                        src={player.thumb}
-                        alt={player.jpName}
-                      />
-                    ) : (
-                      <i className="fas fa-user"></i>
-                    )}
-                    <span className="font-serif w-full">
-                      {player.jpName}
-                      {isCaptain(player.jpName) && (
-                        <i className="ml-2 fas fa-crown text-yellow-dark"></i>
+                <div key={player.id} className='flex'>
+                  <div
+                    className="w-full bg-gray-darkest text-white hover:bg-purple transition-colors duration-300 shadow-md py-1 px-4 rounded flex justify-between items-center cursor-pointer"
+                    onClick={() => handlePlayerClick(player.id)}
+                  >
+                    <span className="font-bold w-8">{player.teamNumber}</span>
+                    <div className="flex-1 flex justify-center items-center">
+                      {player.thumb ? (
+                        <img
+                          className="w-8 h-8 rounded-full mr-4"
+                          src={player.thumb}
+                          alt={player.jpName}
+                        />
+                      ) : (
+                        <i className="fas fa-user"></i>
                       )}
-                    </span>
+                      <span className="font-serif w-full">
+                        {player.jpName}
+                        {isCaptain(player.jpName) && (
+                          <i className="ml-2 fas fa-crown text-yellow-dark"></i>
+                        )}
+                      </span>
+                    </div>
+                    <span className="w-8 text-right">{player.position}</span>
                   </div>
-                  <span className="w-8 text-right">{player.position}</span>
+                  <div className='ml-4 grid grid-flow-col gap-x-2'>
+                    <Button
+                      bgColor="red"
+                      onClick={() => handleDelete(player.id)}
+                      icon="trash-alt"
+                      circle
+                    />
+                    <Button
+                      bgColor="blue"
+                      onClick={() => console.log('edit')}
+                      icon="pencil-alt"
+                      circle
+                    />
+                  </div>
                 </div>
               ))}
             </div>

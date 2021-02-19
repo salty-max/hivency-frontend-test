@@ -5,6 +5,8 @@ import {
   FETCH_PLAYER_FAILURE,
   ADD_PLAYER_SUCCESS,
   ADD_PLAYER_FAILURE,
+  DELETE_PLAYER_SUCCESS,
+  DELETE_PLAYER_FAILURE,
 } from './models/actions';
 import { Player } from './models/Player';
 
@@ -47,6 +49,18 @@ export const playerReducer = (state: PlayerState = initialState, action: PlayerA
         error: ''
       }
     case ADD_PLAYER_FAILURE:
+      return { 
+        loading: false,
+        player: state.player,
+        error: action.error
+      }
+    case DELETE_PLAYER_SUCCESS:
+      return { 
+        loading: false,
+        player: undefined,
+        error: ''
+      }
+    case DELETE_PLAYER_FAILURE:
       return { 
         loading: false,
         player: state.player,

@@ -7,7 +7,9 @@ import {
   FETCH_PLAYER_SUCCESS,
   FETCH_PLAYER_FAILURE,
   ADD_PLAYER_SUCCESS,
-  ADD_PLAYER_FAILURE
+  ADD_PLAYER_FAILURE,
+  DELETE_PLAYER_SUCCESS,
+  DELETE_PLAYER_FAILURE
 } from './models/actions';
 import { Player } from './models/Player';
 
@@ -46,6 +48,20 @@ const addPlayerFailure = (error: string): AppActions => ({
   error: error
 })
 
+const deletePlayerSuccess = (): AppActions => ({
+  type: DELETE_PLAYER_SUCCESS,
+  loading: false,
+  player: undefined,
+  error: ''
+})
+
+const deletePlayerFailure = (error: string): AppActions => ({
+  type: DELETE_PLAYER_FAILURE,
+  loading: false,
+  player: undefined,
+  error: error
+})
+
 export const boundRequestPlayer = (playerId: string) => async (dispatch: Dispatch<AppActions>) => {
   dispatch(requestPlayer());
 
@@ -72,5 +88,16 @@ export const addPlayerAsync = (body: unknown) => async (dispatch: Dispatch<AppAc
     dispatch(addPlayerSuccess());
   } catch(e) {
     dispatch(addPlayerFailure(e.message));
+  }
+}
+
+export const deletePlayerAsync = (id: string) => async (dispatch: Dispatch<AppActions>) => {
+  try {
+    await fetch(`${process.env.REACT_APP_API_URL}/players/${id}`, {
+      method: 'DELETE',
+    });
+    dispatch(deletePlayerSuccess());
+  } catch(e) {
+    dispatch(deletePlayerFailure(e.message));
   }
 }
