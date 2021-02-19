@@ -38,7 +38,7 @@ const MainPage: React.FC = () => {
             </div>
             <div>
               <div>
-                <p className="font-serif text-xl font-medium text-gray-darkest">{team.name}</p>
+                <p className="font-serif font-bold text-xl text-gray-darkest">{team.name}</p>
                 {/* Checking if team is full */}
                 {isTeamFull(team) ? (
                   <p className="text-sm text-green">

@@ -1,11 +1,11 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 
 import { RootState, useTypedSelector } from '../store/rootStore';
 import { AppActions } from '../store/models/actions';
 import { boundRequestTeam } from '../store/team/TeamActions';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import Button from '../components/Button';
 
 interface RouteParams {
@@ -14,22 +14,26 @@ interface RouteParams {
 
 const TeamShow: React.FC = () => {
   const { id } = useParams<RouteParams>();
+  const history = useHistory();
   const { team } = useTypedSelector(state => state.teamReducer)
   const dispatch: ThunkDispatch<RootState, unknown, AppActions> = useDispatch();
   const fetchTeam = () => dispatch(boundRequestTeam(id));
 
-  useEffect(() => { fetchTeam() }, [])
+  useEffect(() => { fetchTeam(); }, []);
 
   const sortedPlayers = team?.players.sort((a, b) => a.teamNumber !== b.teamNumber ? a.teamNumber < b.teamNumber ? -1 : 1 : 0);
 
   const isCaptain = (name: string) => name === team?.captain;
 
-  const handlePlayerClick = () => {
+  const handlePlayerClick = (playerId: string) => {
+    history.push(`/players/${playerId}`);
+  }
+  const handleAddPlayerClick = () => {
     console.log('click');
   }
 
   return (
-    <section className="container p-8">
+    <section className="w-full p-8">
       <div className='pb-4'>
         <Link className="text-blue hover:text-blue-dark" to="/">
           <i className='mr-2 fas fa-arrow-left'></i>
@@ -79,11 +83,20 @@ const TeamShow: React.FC = () => {
                   </div>
                 )}
               </div>
-              <Button bgColor="green" rounded-full icon="user-plus" circle onClick={handlePlayerClick} />
+              <Button bgColor="green" rounded-full icon="user-plus" circle onClick={handleAddPlayerClick} />
             </div>
             <div className='grid grid-rows-1 gap-y-4'>
+              <div className='w-full flex justify-between'>
+                <span>Number</span>
+                <span>Name</span>
+                <span>Position</span>
+              </div>
               {sortedPlayers?.map(player => (
-              <div className="bg-gray-darkest text-white hover:bg-purple transition-colors duration-300 shadow-md py-1 px-4 rounded flex justify-between cursor-pointer" key={player.id}>
+              <div
+                className="w-full bg-gray-darkest text-white hover:bg-purple transition-colors duration-300 shadow-md py-1 px-4 rounded flex justify-between cursor-pointer"
+                key={player.id}
+                onClick={() => handlePlayerClick(player.id.toString())}
+              >
                   <span className="font-bold">{player.teamNumber}</span>
                   <span className="font-serif">
                     {player.jp_name}

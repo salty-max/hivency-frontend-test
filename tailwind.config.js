@@ -10,7 +10,7 @@ module.exports = {
       '2xl': '1536px',
     },
     fontFamily: {
-      sans: ['Open Sans', 'sans-serif'],
+      sans: ['Poppins', 'sans-serif'],
       serif: ['Roboto Slab', 'serif'],
     },
     colors: {

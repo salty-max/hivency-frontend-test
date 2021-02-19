@@ -4,11 +4,15 @@ import { createLogger } from 'redux-logger';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
 import { teamReducer } from './team/TeamReducer';
+import { playerReducer } from './player/PlayerReducer';
 import { AppActions } from './models/actions';
 
 const logger = createLogger();
 
-export const rootReducer = combineReducers({ teamReducer });
+export const rootReducer = combineReducers({
+  teamReducer,
+  playerReducer
+});
 
 export type RootState = ReturnType<typeof rootReducer>;
 
