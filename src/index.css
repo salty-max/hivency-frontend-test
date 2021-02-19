@@ -10,4 +10,22 @@
   body {
     @apply text-gray-darkest;
   }
+
+  button {
+    @apply focus:outline-none;
+  }
+
+  input[type='text'],
+  input[type='number'],
+  textarea {
+    @apply block;
+    @apply rounded;
+    @apply w-full;
+    @apply focus:border-purple;
+    @apply focus:outline-none;
+  }
+
+  input[type='submit'] {
+    @apply w-auto;
+  }
 }

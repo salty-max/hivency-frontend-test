@@ -6,8 +6,8 @@ import {
   FETCH_PLAYER_REQUEST,
   FETCH_PLAYER_SUCCESS,
   FETCH_PLAYER_FAILURE,
-  ADD_PLAYER,
-  EDIT_PLAYER
+  ADD_PLAYER_SUCCESS,
+  ADD_PLAYER_FAILURE
 } from './models/actions';
 import { Player } from './models/Player';
 
@@ -32,6 +32,20 @@ const invalidatePlayer = (error: string): AppActions => ({
   error: error
 });
 
+const addPlayerSuccess = (): AppActions => ({
+  type: ADD_PLAYER_SUCCESS,
+  loading: false,
+  player: undefined,
+  error: ''
+})
+
+const addPlayerFailure = (error: string): AppActions => ({
+  type: ADD_PLAYER_FAILURE,
+  loading: false,
+  player: undefined,
+  error: error
+})
+
 export const boundRequestPlayer = (playerId: string) => async (dispatch: Dispatch<AppActions>) => {
   dispatch(requestPlayer());
 
@@ -42,5 +56,21 @@ export const boundRequestPlayer = (playerId: string) => async (dispatch: Dispatc
     return dispatch(receivePlayer(json[0]));
   } catch(e) {
     dispatch(invalidatePlayer(e.message));
+  }
+}
+
+export const addPlayerAsync = (body: unknown) => async (dispatch: Dispatch<AppActions>) => {
+  try {
+    await fetch(`${process.env.REACT_APP_API_URL}/players`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    dispatch(addPlayerSuccess());
+  } catch(e) {
+    dispatch(addPlayerFailure(e.message));
   }
 }

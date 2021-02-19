@@ -1,6 +1,6 @@
 import { Player } from '../../player/models/Player';
 export interface Team {
-  id: number,
+  id: string,
   name: string,
   description: string,
   coach: string,

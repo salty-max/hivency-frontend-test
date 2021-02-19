@@ -53,7 +53,7 @@ const MainPage: React.FC = () => {
                 )}
               </div>
               <div className="mt-4">
-                <Button bgColor="blue" icon="search" text="See details" onClick={() => handleClick(team.id.toString())} />
+                <Button bgColor="blue" icon="search" text="See details" onClick={() => handleClick(team.id)} />
               </div>
             </div>
           </article>

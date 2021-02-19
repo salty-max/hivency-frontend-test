@@ -3,8 +3,8 @@ import { Player } from './Player';
 export const FETCH_PLAYER_REQUEST = 'FETCH_PLAYER_REQUEST';
 export const FETCH_PLAYER_SUCCESS = 'FETCH_PLAYER_SUCCESS';
 export const FETCH_PLAYER_FAILURE = 'FETCH_PLAYER_FAILURE';
-export const ADD_PLAYER = 'ADD_PLAYER';
-export const EDIT_PLAYER = 'EDIT_PLAYER';
+export const ADD_PLAYER_SUCCESS = 'ADD_PLAYER_SUCCESS';
+export const ADD_PLAYER_FAILURE = 'ADD_PLAYER_FAILURE';
 export const FETCH_TEAM_FAILURE = 'FETCH_TEAM_FAILURE';
 
 interface PlayerAsync {
@@ -22,16 +22,16 @@ interface FetchPlayerSuccess extends PlayerAsync {
 interface FetchPlayerFailure extends PlayerAsync {
   type: typeof FETCH_PLAYER_FAILURE
 }
-interface AddPlayer extends PlayerAsync {
-  type: typeof ADD_PLAYER
+interface AddPlayerSuccess extends PlayerAsync {
+  type: typeof ADD_PLAYER_SUCCESS
 }
-interface EditPlayer extends PlayerAsync {
-  type: typeof EDIT_PLAYER
+interface AddPlayerFailure extends PlayerAsync {
+  type: typeof ADD_PLAYER_FAILURE
 }
 
 export type PlayerActionTypes = 
   | FetchPlayerRequest
   | FetchPlayerSuccess
   | FetchPlayerFailure
-  | AddPlayer
-  | EditPlayer;
+  | AddPlayerSuccess
+  | AddPlayerFailure

@@ -35,14 +35,14 @@ const PlayerShow: React.FC = () => {
             </Link>
           </div>
           <div className="lg:mx-auto lg:w-2/3 md:flex md:bg-gray-darkest md:rounded-lg md:overflow-hidden md:h-70">
-            <img className="w-full rounded-lg md:rounded-none" src={player.thumb} alt={player.jp_name} />
+            <img className="w-full rounded-lg md:rounded-none" src={player.thumb} alt={player.jpName} />
             <div className="bg-gray-darkest md:bg-none mt-4 p-4 md:mt-0 rounded md:rounded-none text-white w-full md:flex md:flex-col md:justify-evenly">
               <div className="pb-4 md:pb-8">
-                <h1 className="text-xl font-serif">
-                  <span className="text-purple mr-2">{player.jp_name}</span>
-                  <span>({player.en_name})</span>
+                <h1 className="text-xl font-serif md:flex">
+                  <p className="text-purple mr-2">{player.jpName}</p>
+                  <p>({player.enName})</p>
                 </h1>
-                <div className="flex items-center">
+                <div className="flex items-center mt-2">
                   <img
                     className="flex-shrink-0 w-8 h-8 mr-2"
                     src={player.team?.logo}
@@ -53,22 +53,30 @@ const PlayerShow: React.FC = () => {
               </div>
               <div>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-purple-dark grid grid-flow-row px-4 py-2 rounded-lg text-center">
+                  {player.nationality && (
+                    <div className="bg-purple-dark grid grid-flow-row px-4 py-2 rounded-lg text-center">
                     <i className="text-purple text-4xl fas fa-flag"></i>{' '}
                     <span className="text-lg">{player.nationality}</span>
                   </div>
-                  <div className="bg-blue-dark grid grid-flow-row px-4 py-2 rounded-lg text-center">
+                  )}
+                  {player.birthday && (
+                    <div className="bg-blue-dark grid grid-flow-row px-4 py-2 rounded-lg text-center">
                     <i className="text-blue text-4xl fas fa-birthday-cake"></i>{' '}
                     <span className="text-lg">{player.birthday}</span>
                   </div>
-                  <div className="bg-green-dark grid grid-flow-row px-4 py-2 rounded-lg text-center">
+                  )}
+                  {player.height && (
+                    <div className="bg-green-dark grid grid-flow-row px-4 py-2 rounded-lg text-center">
                     <i className="text-green text-4xl fas fa-ruler-horizontal"></i>{' '}
                     <span className="text-lg">{player.height} cm</span>
                   </div>
-                  <div className="bg-mint-dark grid grid-flow-row px-4 py-2 rounded-lg text-center">
+                  )}
+                  {player.weight && (
+                    <div className="bg-mint-dark grid grid-flow-row px-4 py-2 rounded-lg text-center">
                     <i className="text-mint text-4xl fas fa-weight"></i>{' '}
                     <span className="text-lg">{player.weight} kg</span>
                   </div>
+                  )}
                 </div>
               </div>
             </div>
