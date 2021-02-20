@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 
@@ -6,6 +6,8 @@ import { RootState, useTypedSelector } from '../store/rootStore';
 import { AppActions } from '../store/models/actions';
 import { boundRequestPlayer } from '../store/player/PlayerActions';
 import { Link, useParams } from 'react-router-dom';
+import Button from '../components/Button';
+import PlayerFormModal from '../components/PlayerFormModal';
 
 interface RouteParams {
   id: string;
@@ -14,12 +16,22 @@ interface RouteParams {
 const PlayerShow: React.FC = () => {
   const { id } = useParams<RouteParams>();
   const { player } = useTypedSelector((state) => state.playerReducer);
+  const { team } = useTypedSelector((state) => state.teamReducer);
   const dispatch: ThunkDispatch<RootState, unknown, AppActions> = useDispatch();
   const fetchPlayer = () => dispatch(boundRequestPlayer(id));
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     fetchPlayer();
   }, []);
+
+  const handleEditPlayerClick = (): void => {
+    setShowModal(true);
+  };
+
+  const onModalClose = (): void => {
+    setShowModal(false);
+  };
 
   return (
     <section className="p-8">
@@ -38,17 +50,25 @@ const PlayerShow: React.FC = () => {
             <img className="w-full rounded-lg md:rounded-none" src={player.thumb} alt={player.jpName} />
             <div className="bg-gray-darkest md:bg-none mt-4 p-4 md:mt-0 rounded md:rounded-none text-white w-full md:flex md:flex-col md:justify-evenly">
               <div className="pb-4 md:pb-8">
-                <h1 className="text-xl font-serif md:flex">
-                  <p className="text-purple mr-2">{player.jpName}</p>
-                  <p>({player.enName})</p>
-                </h1>
+                <div className='flex justify-between items-center'>
+                  <h1 className="text-xl font-serif md:flex">
+                    <p className="text-purple mr-2">{player.jpName}</p>
+                    <p>({player.enName})</p>
+                  </h1>
+                  <Button
+                    bgColor="blue"
+                    icon="pencil-alt"
+                    circle
+                    onClick={handleEditPlayerClick}
+                  />
+                </div>
                 <div className="flex items-center mt-2">
                   <img
                     className="flex-shrink-0 w-8 h-8 mr-2"
-                    src={player.team?.logo}
+                    src={team?.logo}
                     alt=""
                   />
-                  <p>{player.team?.name}</p>
+                  <p>{team?.name}</p>
                 </div>
               </div>
               <div>
@@ -85,6 +105,7 @@ const PlayerShow: React.FC = () => {
             <h3 className="font-bold text-xl pb-2">Bio</h3>
             <p>{player.bio}</p>
           </div>
+          <PlayerFormModal player={player} showModal={showModal} onModalClose={onModalClose} />
         </>
       )}
     </section>

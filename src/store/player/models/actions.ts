@@ -7,6 +7,9 @@ export const ADD_PLAYER_SUCCESS = 'ADD_PLAYER_SUCCESS';
 export const ADD_PLAYER_FAILURE = 'ADD_PLAYER_FAILURE';
 export const DELETE_PLAYER_SUCCESS = 'DELETE_PLAYER_SUCCESS';
 export const DELETE_PLAYER_FAILURE = 'DELETE_PLAYER_FAILURE';
+export const EDIT_PLAYER_SUCCESS = 'EDIT_PLAYER_SUCCESS';
+export const EDIT_PLAYER_FAILURE = 'EDIT_PLAYER_FAILURE';
+
 interface PlayerAsync {
   loading: boolean,
   player?: Player,
@@ -28,6 +31,12 @@ interface AddPlayerSuccess extends PlayerAsync {
 interface AddPlayerFailure extends PlayerAsync {
   type: typeof ADD_PLAYER_FAILURE
 }
+interface EditPlayerSuccess extends PlayerAsync {
+  type: typeof EDIT_PLAYER_SUCCESS
+}
+interface EditPlayerFailure extends PlayerAsync {
+  type: typeof EDIT_PLAYER_FAILURE
+}
 interface DeletePlayerSuccess extends PlayerAsync {
   type: typeof DELETE_PLAYER_SUCCESS
 }
@@ -41,5 +50,7 @@ export type PlayerActionTypes =
   | FetchPlayerFailure
   | AddPlayerSuccess
   | AddPlayerFailure
+  | EditPlayerSuccess
+  | EditPlayerFailure
   | DeletePlayerSuccess
   | DeletePlayerFailure
