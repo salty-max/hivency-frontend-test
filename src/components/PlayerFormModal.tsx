@@ -28,15 +28,24 @@ type PlayerFormModalProps = {
   player?: Player;
   showModal: boolean;
   onModalClose: () => void,
-  afterSubmit?: () => void
+  afterSubmit?: () => void // Method to be used during onSubmit after data saving.
 };
 
+/**
+ * TODO: More validation !
+ * TODO: Input component
+ */
 const PlayerFormModal: React.FC<PlayerFormModalProps> = ({
   showModal,
   onModalClose,
   player,
   afterSubmit
 }: PlayerFormModalProps) => {
+
+  /**
+   * If player is passed in props, set it into state otherwise set default values
+   * TODO: Rework to move it after initializations
+   */
   const initialValues = useMemo(() => (
     player
       ? player
@@ -53,11 +62,12 @@ const PlayerFormModal: React.FC<PlayerFormModalProps> = ({
     thumb: '',
     teamId: '',
   }), [player]);
+
   const dispatch: ThunkDispatch<RootState, unknown, AppActions> = useDispatch();
   const addPlayer = (body: Player) => dispatch(addPlayerAsync(body));
   const editPlayer = (body: Player) => dispatch(editPlayerAsync(body));
   const { team } = useTypedSelector((state) => state.teamReducer);
-  const [values, setValues] = useState<Values>(player ? player : initialValues);
+  const [values, setValues] = useState<Values>(initialValues);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -85,7 +95,8 @@ const PlayerFormModal: React.FC<PlayerFormModalProps> = ({
 
     afterSubmit && afterSubmit();
     onModalClose();
-    setValues(player ? player : initialValues);
+    //Reset form values
+    setValues(initialValues);
   };
   return (
     <Modal onClose={onModalClose} isOpen={showModal} title="Add a player">

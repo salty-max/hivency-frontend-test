@@ -7,6 +7,7 @@ import { teamReducer } from './team/TeamReducer';
 import { playerReducer } from './player/PlayerReducer';
 import { AppActions } from './models/actions';
 
+//TODO: Remove in production
 const logger = createLogger();
 
 export const rootReducer = combineReducers({
@@ -16,12 +17,13 @@ export const rootReducer = combineReducers({
 
 export type RootState = ReturnType<typeof rootReducer>;
 
+// Export already typed selector for easier use in components.
 export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const store = createStore<RootState, AppActions, unknown, unknown>(
   rootReducer,
   applyMiddleware(
     thunk as ThunkMiddleware<RootState, AppActions>,
-    logger
+    logger //TODO: Remove in production
   )
 )

@@ -18,8 +18,9 @@ const MainPage: React.FC = () => {
 
   useEffect(() => { fetchTeams() }, []);
 
+  // Check if number of players in a team is 11 => visual purposes only atm
   const isTeamFull = (team: Team): boolean => team.players.length >= 11;
-
+  
   const handleClick = (id: string) => {
     history.push(`/teams/${id}`)
   }

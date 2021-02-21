@@ -27,8 +27,10 @@ const TeamShow: React.FC = () => {
     fetchTeam();
   }, []);
 
+  // Return players array sorted by team number
   const sortedPlayers = team?.players.sort((a, b) => a.teamNumber !== b.teamNumber ? (a.teamNumber < b.teamNumber ? -1 : 1) : 0);
 
+  // Check if specific player is the team captain => Visual purposes only atm.
   const isCaptain = (name: string): boolean => name === team?.captain;
 
   const handlePlayerClick = (playerId: string): void => {
@@ -155,6 +157,7 @@ const TeamShow: React.FC = () => {
                 </div>
               ))}
             </div>
+            {/* Pass fetchTeam() to trigger re-render on submit */}
             <PlayerFormModal afterSubmit={fetchTeam} showModal={showModal} onModalClose={onModalClose} />
           </main>
         </div>

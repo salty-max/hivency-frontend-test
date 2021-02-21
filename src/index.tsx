@@ -7,7 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store/rootStore';
 
-
+//TODO: Add persist
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
