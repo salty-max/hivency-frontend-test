@@ -1,5 +1,23 @@
 # Hivency Frontend Test
 
+## Addendum
+
+### Setup
+Install dependencies : `yarn`
+Start the json server : `yarn api`
+Start the app : `yarn start`
+
+### Young dev reacts to technical test
+
+- It took about a work day worth of work split during all week. Spent quit some time on the UI to learn the frawework (more on that below).
+- I don't often use Typescript + React so typing is messy and the overall app lacks validation and optimization.
+- As the SportsDB api didn't let me fetch players by team id without paying, I did my own little json server embedded in the app and decided to have a little fun with the data. The theme is still connected to sports, in a way.
+- As I wanted to build a quick and not ugly UI, I discovered [TailwindCSS](https://tailwindcss.com/) during this test. Lots of fun, very customizable and very powerful.
+- I used Redux for store management. First time using it with Typescript so it is certainly optimizable.
+- I tried to test the app using react-testing-library + typescript. Spoiler: It didn't go as planned so I dropped the idea in order to not spend an eternity on this.
+
+## Briefing
+
 Welcome to the Hivency Frontend test!
 
 This test is designed to evaluate your web development skills, and is in two parts:
