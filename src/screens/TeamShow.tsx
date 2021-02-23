@@ -60,6 +60,7 @@ const TeamShow: React.FC = () => {
         </Link>
       </div>
       {team && (
+        <>
         <div className="md:grid md:grid-cols-3">
           <aside className="shadow-md rounded overflow-hidden">
             <div className="bg-gray-darkest text-white flex justify-between items-center py-2 px-4">
@@ -161,6 +162,39 @@ const TeamShow: React.FC = () => {
             <PlayerFormModal afterSubmit={fetchTeam} showModal={showModal} onModalClose={onModalClose} />
           </main>
         </div>
+        <div className="pt-4 flex justify-center">
+          <div className='bg-green-dark h-80 w-60 grid grid-rows-4'>
+              <div className="flex items-center justify-around">
+                {team.players.filter(player => ["FW"].includes(player.position)).map(p => (
+                  <>
+                  <img className="rounded-full w-8 h-8" src={p.thumb} alt=''/>
+                  </>
+                ))}
+              </div>
+              <div className="flex items-center justify-around">
+                {team.players.filter(player => ["AM"].includes(player.position)).map(p => (
+                  <>
+                  <img className="rounded-full w-8 h-8" src={p.thumb} alt=''/>
+                  </>
+                ))}
+              </div>
+              <div className="flex items-center justify-around">
+                {team.players.filter(player => ["DM", "DF"].includes(player.position)).map(p => (
+                  <>
+                  <img className="rounded-full w-8 h-8" src={p.thumb} alt=''/>
+                  </>
+                ))}
+              </div>
+              <div className="flex items-center justify-around">
+                {team.players.filter(player => ["GK"].includes(player.position)).map(p => (
+                  <>
+                  <img className="rounded-full w-8 h-8" src={p.thumb} alt=''/>
+                  </>
+                ))}
+              </div>
+          </div>
+        </div>
+        </>
       )}
       
     </section>
